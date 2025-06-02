@@ -8,12 +8,6 @@ Este proyecto tiene como objetivo simular el comportamiento de un robot autónom
 
 ---
 
-## 🔗 Enlace al código del proyecto en Github
-
-[https://github.com/luisdh8/robot-language-compiler](https://github.com/luisdh8/robot-language-compiler)
-
----
-
 ## 🔄 Diagrama del autómata que definirá la lógica del CPU (usando Graphviz)
 
 El simulador no solo valida y ejecuta instrucciones, sino que simula el comportamiento interno del CPU del robot, empleando dos máquinas de estados distintas, cada una con responsabilidades específicas.
