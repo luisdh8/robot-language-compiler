@@ -27,6 +27,8 @@ Este autómata finito no determinista (NFA) representa la lógica que valida y e
 
 #### 📈 Su estructura es la siguiente:
 
+![image](https://github.com/user-attachments/assets/519f26f3-ee3b-4b24-a9e3-f58de1e57fc5)
+
 ```dot
 digraph CPU {
   node [shape=circle]; Q0 Q1 Q2 Q3 Q4;
@@ -67,6 +69,9 @@ Cada instrucción es reconocida por esta máquina como un conjunto de pasos vál
 Para poder validar que efectivamente el robot no solo se esté moviendo, sino también verificar la orientación a la que se dirigirá después de un TURN, fue necesaria la implementación de una segunda máquina de estados determinista (DFA), que simula los giros en sentido horario y traduce el lenguaje de un 'TURN {d}' en un cambio de estado que representa la nueva dirección que se tomará.
 
 📈 Su estructura es la siguiente:
+
+![image](https://github.com/user-attachments/assets/47e17407-ba27-4e53-b695-04ac47975513)
+
 ```
 digraph Orientation {
   rankdir=LR;
