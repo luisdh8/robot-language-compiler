@@ -4,30 +4,49 @@
 %}
 
 %%
-[Rr]obot                    { return ROBOT; }
-[Pp]lease                   { return PLEASE; }
+/* --- Sujeto / nombres del robot --- */
+[Rr]obot|[Aa][Ii]|[Tt]hing           { return NOUN; }
 
-[Mm]ove                     { return MOVE; }
-[Tt]urn                     { return TURN; }
+/* --- Pronombres personales --- */
+[Yy]ou                               { return PRONOUN; }
 
-[Bb]locks                  { return BLOCKS; }
-[Dd]egrees                 { return DEGREES; }
+/* --- Palabras de cortesía / apertura --- */
+[Pp]lease |
+[Cc]ould[ \t]+[Yy]ou |
+[Ww]ould[ \t]+[Yy]ou |
+[Kk]indly                             { return COURTESY; }
 
-[Aa]head                   { return AHEAD; }
+/* --- Verbos principales --- */
+[Mm]ove|[Tt]urn                       { return VERB; }
 
-/* Rechazar direcciones no válidas */
-[Rr]ight|[Ll]eft|[Bb]ehind { return INVALID_DIRECTION; }
+/* --- Unidades de movimiento / giro --- */
+[Bb]locks|[Dd]egrees                  { return UNITS; }
 
-[Aa]nd                     { return AND; }
-[Tt]hen                    { return THEN; }
-","                        { return COMMA; }
+/* --- Direcciones --- */
+[Aa]head                              { return VALID_DIRECTION; }
+[Rr]ight|[Ll]eft|[Bb]ehind            { return INVALID_DIRECTION; }
 
-90|180|270|360             { yylval.degree = atoi(yytext); return DEGREE; }
-[0-9]+                     { yylval.number = atoi(yytext); return NUMBER; }
+/* --- Conectores gramaticales --- */
+[Aa]nd                                { return AND; }
+[Tt]hen                               { return THEN; }
+","                                   { return COMMA; }
 
-[ \t]+                     ; // Espacios ignorados
-\n                         { return EOL; }
-.                          { return INVALID; }
+/* --- Adverbios opcionales --- */
+[Rr]ight[ \t]+[Nn]ow |
+[Nn]ow |
+[Qq]uickly |
+[Ii]mmediately                         { return ADVERBIAL; }
+
+/* --- Números y grados --- */
+90|180|270|360                        { yylval.degree = atoi(yytext); return DEGREE; }
+[0-9]+                                { yylval.number = atoi(yytext); return NUMBER; }
+
+/* --- Espacios y saltos de línea --- */
+[ \t]+                                ;
+\n                                    { return EOL; }
+
+/* --- Todo lo no reconocido --- */
+.                                     { return INVALID; }
 
 %%
 
