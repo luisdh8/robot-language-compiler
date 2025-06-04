@@ -126,7 +126,7 @@ digraph Orientation {
 - El robot inicia en la posición ```(5, 5)``` mirando al norte.
 - Las instrucciones válidas se leen desde un archivo ```.asm``` (una por línea).
 - El simulador avanza instrucción por instrucción:
-  - Si es ```MOV,n``` verifica que no salga de la matriz.
+  - Si es ```MOV,b``` verifica que no salga de la matriz.
   - Si es ```TURN,d```, actualiza la orientación.
 
 ---
