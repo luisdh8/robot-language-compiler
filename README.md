@@ -8,6 +8,12 @@ Este proyecto tiene como objetivo simular el comportamiento de un robot autónom
 
 ---
 
+## 📂 Repositorio de Github con el proyecto
+
+https://github.com/luisdh8/robot-language-compiler
+
+---
+
 ## 🔄 Diagrama del autómata que definirá la lógica del CPU (usando Graphviz)
 
 El simulador no solo valida y ejecuta instrucciones, sino que simula el comportamiento interno del CPU del robot, empleando dos máquinas de estados distintas, cada una con responsabilidades específicas.
@@ -116,3 +122,91 @@ digraph Orientation {
 
 ---
 
+## 🧪 Lógica de simulación
+- El robot inicia en la posición ```(5, 5)``` mirando al norte.
+- Las instrucciones válidas se leen desde un archivo ```.asm``` (una por línea).
+- El simulador avanza instrucción por instrucción:
+  - Si es ```MOV,n``` verifica que no salga de la matriz.
+  - Si es ```TURN,d```, actualiza la orientación.
+
+---
+
+## 🛠️ Instrucciones de Instalación
+
+1. **Clonar el repositorio**
+
+```bash
+git clone https://github.com/luisdh8/robot-language-compiler.git
+cd robot-language-compiler
+```
+
+2. **Ejecutar el programa**
+```bash
+python test_cpu.py
+```
+
+---
+
+## ✅ Output esperado
+
+```
+Initial state:
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . N . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+Robot at (5,5) facing N
+-------------------
+Instruction: mov,2
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . N . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+Robot at (5,3) facing N
+-------------------
+Instruction: turn,90
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . E . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+Robot at (5,3) facing E
+-------------------
+Instruction: mov,4
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . E
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+Robot at (9,3) facing E
+-------------------
+Instruction: mov,2
+Test failed: Illegal move: out of bounds
+```
+
+## 📂 Archivos relevantes
+- ```cpu.py```	Implementa el simulador y autómatas en Python.
+- ```test_cpu.py```	Script de prueba e impresión del estado del robot.
+- ```instructions.asm```	Archivo de entrada con instrucciones en ensamblador.
