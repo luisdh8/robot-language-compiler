@@ -73,11 +73,10 @@
 #include <stdlib.h>
 
 FILE *output;
-
 void yyerror(const char *s);
 int yylex(void);
 
-#line 81 "robot.tab.c"
+#line 80 "robot.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -112,28 +111,30 @@ enum yysymbol_kind_t
   YYSYMBOL_DEGREE = 4,                     /* DEGREE  */
   YYSYMBOL_NOUN = 5,                       /* NOUN  */
   YYSYMBOL_PRONOUN = 6,                    /* PRONOUN  */
-  YYSYMBOL_VERB = 7,                       /* VERB  */
-  YYSYMBOL_UNITS = 8,                      /* UNITS  */
-  YYSYMBOL_COURTESY = 9,                   /* COURTESY  */
-  YYSYMBOL_VALID_DIRECTION = 10,           /* VALID_DIRECTION  */
-  YYSYMBOL_INVALID_DIRECTION = 11,         /* INVALID_DIRECTION  */
-  YYSYMBOL_AND = 12,                       /* AND  */
-  YYSYMBOL_THEN = 13,                      /* THEN  */
-  YYSYMBOL_COMMA = 14,                     /* COMMA  */
-  YYSYMBOL_ADVERBIAL = 15,                 /* ADVERBIAL  */
-  YYSYMBOL_EOL = 16,                       /* EOL  */
-  YYSYMBOL_INVALID = 17,                   /* INVALID  */
-  YYSYMBOL_YYACCEPT = 18,                  /* $accept  */
-  YYSYMBOL_sentence = 19,                  /* sentence  */
-  YYSYMBOL_command_sequence = 20,          /* command_sequence  */
-  YYSYMBOL_optional_comma = 21,            /* optional_comma  */
-  YYSYMBOL_polite_command = 22,            /* polite_command  */
-  YYSYMBOL_opener = 23,                    /* opener  */
-  YYSYMBOL_courtesy_block = 24,            /* courtesy_block  */
-  YYSYMBOL_action = 25,                    /* action  */
-  YYSYMBOL_move_command = 26,              /* move_command  */
-  YYSYMBOL_turn_command = 27,              /* turn_command  */
-  YYSYMBOL_optional_adverb = 28            /* optional_adverb  */
+  YYSYMBOL_COURTESY = 7,                   /* COURTESY  */
+  YYSYMBOL_MOVE_VERB = 8,                  /* MOVE_VERB  */
+  YYSYMBOL_TURN_VERB = 9,                  /* TURN_VERB  */
+  YYSYMBOL_BLOCKS = 10,                    /* BLOCKS  */
+  YYSYMBOL_DEGREES = 11,                   /* DEGREES  */
+  YYSYMBOL_AHEAD = 12,                     /* AHEAD  */
+  YYSYMBOL_INVALID_DIRECTION = 13,         /* INVALID_DIRECTION  */
+  YYSYMBOL_AND = 14,                       /* AND  */
+  YYSYMBOL_THEN = 15,                      /* THEN  */
+  YYSYMBOL_COMMA = 16,                     /* COMMA  */
+  YYSYMBOL_ADVERBIAL = 17,                 /* ADVERBIAL  */
+  YYSYMBOL_EOL = 18,                       /* EOL  */
+  YYSYMBOL_INVALID = 19,                   /* INVALID  */
+  YYSYMBOL_YYACCEPT = 20,                  /* $accept  */
+  YYSYMBOL_input = 21,                     /* input  */
+  YYSYMBOL_line = 22,                      /* line  */
+  YYSYMBOL_sentence = 23,                  /* sentence  */
+  YYSYMBOL_command = 24,                   /* command  */
+  YYSYMBOL_connector = 25,                 /* connector  */
+  YYSYMBOL_polite_move = 26,               /* polite_move  */
+  YYSYMBOL_polite_turn = 27,               /* polite_turn  */
+  YYSYMBOL_simple_move = 28,               /* simple_move  */
+  YYSYMBOL_simple_turn = 29,               /* simple_turn  */
+  YYSYMBOL_courtesy_opener = 30            /* courtesy_opener  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -459,21 +460,21 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  10
+#define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   26
+#define YYLAST   45
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  18
+#define YYNTOKENS  20
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  11
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  21
+#define YYNRULES  31
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  34
+#define YYNSTATES  49
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   272
+#define YYMAXUTOK   274
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -514,16 +515,17 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
-      15,    16,    17
+      15,    16,    17,    18,    19
 };
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    34,    34,    38,    39,    40,    41,    44,    46,    50,
-      54,    55,    56,    57,    61,    62,    66,    67,    71,    76,
-      80,    82
+       0,    26,    26,    28,    32,    33,    34,    38,    46,    47,
+      48,    49,    53,    54,    55,    56,    60,    64,    71,    75,
+      82,    86,    93,    97,   104,   105,   106,   107,   108,   109,
+     110,   111
 };
 #endif
 
@@ -540,11 +542,11 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
 static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "NUMBER", "DEGREE",
-  "NOUN", "PRONOUN", "VERB", "UNITS", "COURTESY", "VALID_DIRECTION",
-  "INVALID_DIRECTION", "AND", "THEN", "COMMA", "ADVERBIAL", "EOL",
-  "INVALID", "$accept", "sentence", "command_sequence", "optional_comma",
-  "polite_command", "opener", "courtesy_block", "action", "move_command",
-  "turn_command", "optional_adverb", YY_NULLPTR
+  "NOUN", "PRONOUN", "COURTESY", "MOVE_VERB", "TURN_VERB", "BLOCKS",
+  "DEGREES", "AHEAD", "INVALID_DIRECTION", "AND", "THEN", "COMMA",
+  "ADVERBIAL", "EOL", "INVALID", "$accept", "input", "line", "sentence",
+  "command", "connector", "polite_move", "polite_turn", "simple_move",
+  "simple_turn", "courtesy_opener", YY_NULLPTR
 };
 
 static const char *
@@ -554,7 +556,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-19)
+#define YYPACT_NINF (-13)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -568,10 +570,11 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -2,    -4,     6,    16,    -8,   -19,    11,    13,   -19,   -19,
-     -19,   -19,   -19,    -1,    10,   -19,   -19,   -19,   -19,    -5,
-      -2,     9,    12,     8,   -19,   -19,    14,     7,    -2,     7,
-     -19,   -19,   -19,   -19
+     -13,     0,   -13,    -8,    -1,     2,   -13,   -13,     4,   -13,
+     -12,   -12,     3,   -13,     7,    10,   -13,   -13,   -13,   -13,
+       1,    11,    13,    16,    19,    17,   -13,   -13,   -13,   -13,
+      21,   -13,    23,   -13,    18,    20,   -13,    22,    24,    15,
+      12,    25,    26,    27,   -13,   -13,    28,   -13,   -13
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -579,24 +582,25 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,    13,    14,     0,     7,     3,     0,    12,    10,    15,
-       1,     8,     2,     0,     0,     9,    16,    17,    11,     7,
-       0,     0,     0,     0,     4,     5,     0,    20,     0,    20,
-      21,    19,     6,    18
+       2,     0,     1,     0,     0,    28,     5,     3,     0,     7,
+       8,     9,     0,     6,    24,    29,    30,     4,    14,    15,
+       0,     0,     0,     0,     0,    25,    26,    31,    12,    13,
+       0,    10,     0,    11,     0,     0,    27,     0,     0,     0,
+      18,    22,     0,    16,    19,    23,    20,    17,    21
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -19,   -19,   -19,     4,   -18,   -19,    24,   -19,   -19,   -19,
-      -3
+     -13,   -13,   -13,   -13,   -13,    29,   -13,   -13,   -13,   -13,
+     -13
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     3,     4,    13,     5,     6,     7,    15,    16,    17,
-      31
+       0,     1,     7,     8,     9,    21,    10,    11,    33,    31,
+      12
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -604,42 +608,49 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,    24,    25,     1,     2,     2,    11,     2,    12,    11,
-      32,    19,    20,    21,    22,     9,    10,    26,    14,    18,
-      27,    28,    30,    23,    29,     8,    33
+       2,     3,    18,    19,    20,     4,    14,     5,    15,    16,
+      13,    23,    24,    25,    26,    28,    29,    27,     6,    34,
+      30,    32,    17,    35,    36,    37,    38,    43,    39,    44,
+       0,    40,     0,    41,    42,     0,     0,     0,    46,     0,
+      22,     0,    45,     0,    47,    48
 };
 
 static const yytype_int8 yycheck[] =
 {
-       5,    19,    20,     5,     9,     9,    14,     9,    16,    14,
-      28,    12,    13,     3,     4,     9,     0,     8,     7,     6,
-       8,    13,    15,    19,    10,     1,    29
+       0,     1,    14,    15,    16,     5,     7,     7,     6,     7,
+      18,     8,     9,     6,     7,    14,    15,     7,    18,     3,
+       9,     8,    18,     4,     7,     4,     3,    12,    10,    17,
+      -1,    11,    -1,    11,    10,    -1,    -1,    -1,    12,    -1,
+      11,    -1,    17,    -1,    17,    17
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     5,     9,    19,    20,    22,    23,    24,    24,     9,
-       0,    14,    16,    21,     7,    25,    26,    27,     6,    12,
-      13,     3,     4,    21,    22,    22,     8,     8,    13,    10,
-      15,    28,    22,    28
+       0,    21,     0,     1,     5,     7,    18,    22,    23,    24,
+      26,    27,    30,    18,     7,     6,     7,    18,    14,    15,
+      16,    25,    25,     8,     9,     6,     7,     7,    14,    15,
+       9,    29,     8,    28,     3,     4,     7,     4,     3,    10,
+      11,    11,    10,    12,    17,    17,    12,    17,    17
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    18,    19,    20,    20,    20,    20,    21,    21,    22,
-      23,    23,    23,    23,    24,    24,    25,    25,    26,    27,
-      28,    28
+       0,    20,    21,    21,    22,    22,    22,    23,    24,    24,
+      24,    24,    25,    25,    25,    25,    26,    26,    27,    27,
+      28,    28,    29,    29,    30,    30,    30,    30,    30,    30,
+      30,    30
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     2,     1,     4,     4,     6,     0,     1,     2,
-       2,     2,     1,     1,     1,     2,     1,     1,     5,     4,
-       0,     1
+       0,     2,     0,     2,     2,     1,     2,     1,     1,     1,
+       3,     3,     2,     2,     1,     1,     5,     6,     4,     5,
+       4,     5,     3,     4,     2,     3,     3,     4,     1,     2,
+       2,     3
 };
 
 
@@ -1102,26 +1113,87 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* sentence: command_sequence EOL  */
+  case 6: /* line: error EOL  */
 #line 34 "robot.y"
-                                 { fprintf(output, "# Compilation successful.\n"); }
-#line 1109 "robot.tab.c"
+                { yyerrok; }
+#line 1120 "robot.tab.c"
     break;
 
-  case 18: /* move_command: VERB NUMBER UNITS VALID_DIRECTION optional_adverb  */
+  case 7: /* sentence: command  */
+#line 39 "robot.y"
+    {
+        fprintf(output, "# Compilation successful.\n");
+        printf("✅ Instruction parsed successfully!\n");
+    }
+#line 1129 "robot.tab.c"
+    break;
+
+  case 16: /* polite_move: courtesy_opener MOVE_VERB NUMBER BLOCKS AHEAD  */
+#line 61 "robot.y"
+    {
+        fprintf(output, "MOV,%d\n", (yyvsp[-2].number));
+    }
+#line 1137 "robot.tab.c"
+    break;
+
+  case 17: /* polite_move: courtesy_opener MOVE_VERB NUMBER BLOCKS AHEAD ADVERBIAL  */
+#line 65 "robot.y"
+    {
+        fprintf(output, "MOV,%d\n", (yyvsp[-3].number));
+    }
+#line 1145 "robot.tab.c"
+    break;
+
+  case 18: /* polite_turn: courtesy_opener TURN_VERB DEGREE DEGREES  */
 #line 72 "robot.y"
-        { fprintf(output, "MOV,%d\n", (yyvsp[-3].number)); }
-#line 1115 "robot.tab.c"
+    {
+        fprintf(output, "TURN,%d\n", (yyvsp[-1].degree));
+    }
+#line 1153 "robot.tab.c"
     break;
 
-  case 19: /* turn_command: VERB DEGREE UNITS optional_adverb  */
-#line 77 "robot.y"
-        { fprintf(output, "TURN,%d\n", (yyvsp[-2].degree)); }
-#line 1121 "robot.tab.c"
+  case 19: /* polite_turn: courtesy_opener TURN_VERB DEGREE DEGREES ADVERBIAL  */
+#line 76 "robot.y"
+    {
+        fprintf(output, "TURN,%d\n", (yyvsp[-2].degree));
+    }
+#line 1161 "robot.tab.c"
+    break;
+
+  case 20: /* simple_move: MOVE_VERB NUMBER BLOCKS AHEAD  */
+#line 83 "robot.y"
+    {
+        fprintf(output, "MOV,%d\n", (yyvsp[-2].number));
+    }
+#line 1169 "robot.tab.c"
+    break;
+
+  case 21: /* simple_move: MOVE_VERB NUMBER BLOCKS AHEAD ADVERBIAL  */
+#line 87 "robot.y"
+    {
+        fprintf(output, "MOV,%d\n", (yyvsp[-3].number));
+    }
+#line 1177 "robot.tab.c"
+    break;
+
+  case 22: /* simple_turn: TURN_VERB DEGREE DEGREES  */
+#line 94 "robot.y"
+    {
+        fprintf(output, "TURN,%d\n", (yyvsp[-1].degree));
+    }
+#line 1185 "robot.tab.c"
+    break;
+
+  case 23: /* simple_turn: TURN_VERB DEGREE DEGREES ADVERBIAL  */
+#line 98 "robot.y"
+    {
+        fprintf(output, "TURN,%d\n", (yyvsp[-2].degree));
+    }
+#line 1193 "robot.tab.c"
     break;
 
 
-#line 1125 "robot.tab.c"
+#line 1197 "robot.tab.c"
 
       default: break;
     }
@@ -1314,7 +1386,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 85 "robot.y"
+#line 114 "robot.y"
 
 
 int main(void) {
@@ -1324,12 +1396,19 @@ int main(void) {
         exit(1);
     }
 
-    printf("Enter a polite instruction to the robot:\n");
+    printf("Robot Language Compiler\n");
+    printf("Enter polite instructions (one per line, Ctrl+D to exit):\n");
+    printf("Examples:\n");
+    printf("  Robot please move 3 blocks ahead\n");
+    printf("  Could you move 2 blocks ahead, then turn 90 degrees\n");
+    printf("---\n");
+    
     yyparse();
     fclose(output);
     return 0;
 }
 
 void yyerror(const char *s) {
-    fprintf(stderr, "❌ Syntax error: %s\n", s);
+    fprintf(stderr, "❌ Error: %s\n", s);
+    fprintf(stderr, "💡 Try: 'Robot please move 3 blocks ahead'\n");
 }

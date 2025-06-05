@@ -58,17 +58,19 @@ extern int yydebug;
     DEGREE = 259,                  /* DEGREE  */
     NOUN = 260,                    /* NOUN  */
     PRONOUN = 261,                 /* PRONOUN  */
-    VERB = 262,                    /* VERB  */
-    UNITS = 263,                   /* UNITS  */
-    COURTESY = 264,                /* COURTESY  */
-    VALID_DIRECTION = 265,         /* VALID_DIRECTION  */
-    INVALID_DIRECTION = 266,       /* INVALID_DIRECTION  */
-    AND = 267,                     /* AND  */
-    THEN = 268,                    /* THEN  */
-    COMMA = 269,                   /* COMMA  */
-    ADVERBIAL = 270,               /* ADVERBIAL  */
-    EOL = 271,                     /* EOL  */
-    INVALID = 272                  /* INVALID  */
+    COURTESY = 262,                /* COURTESY  */
+    MOVE_VERB = 263,               /* MOVE_VERB  */
+    TURN_VERB = 264,               /* TURN_VERB  */
+    BLOCKS = 265,                  /* BLOCKS  */
+    DEGREES = 266,                 /* DEGREES  */
+    AHEAD = 267,                   /* AHEAD  */
+    INVALID_DIRECTION = 268,       /* INVALID_DIRECTION  */
+    AND = 269,                     /* AND  */
+    THEN = 270,                    /* THEN  */
+    COMMA = 271,                   /* COMMA  */
+    ADVERBIAL = 272,               /* ADVERBIAL  */
+    EOL = 273,                     /* EOL  */
+    INVALID = 274                  /* INVALID  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -77,12 +79,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "robot.y"
+#line 10 "robot.y"
 
     int number;
     int degree;
 
-#line 86 "robot.tab.h"
+#line 88 "robot.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

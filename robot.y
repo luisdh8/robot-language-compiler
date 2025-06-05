@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 FILE *output;
-
 void yyerror(const char *s);
 int yylex(void);
 %}
@@ -13,73 +12,103 @@ int yylex(void);
     int degree;
 }
 
+/* Tokens */
 %token <number> NUMBER
 %token <degree> DEGREE
+%token NOUN PRONOUN COURTESY MOVE_VERB TURN_VERB 
+%token BLOCKS DEGREES AHEAD INVALID_DIRECTION
+%token AND THEN COMMA ADVERBIAL EOL INVALID
 
-%token NOUN PRONOUN
-%token VERB
-%token UNITS
-%token COURTESY
-%token VALID_DIRECTION INVALID_DIRECTION
-%token AND THEN COMMA
-%token ADVERBIAL
-%token EOL
-%token INVALID
-
-%start sentence
+%start input
 
 %%
 
+input:
+    /* empty */
+    | input line
+    ;
+
+line:
+    sentence EOL
+    | EOL
+    | error EOL { yyerrok; }
+    ;
+
 sentence:
-    command_sequence EOL         { fprintf(output, "# Compilation successful.\n"); }
+    command
+    {
+        fprintf(output, "# Compilation successful.\n");
+        printf("✅ Instruction parsed successfully!\n");
+    }
     ;
 
-command_sequence:
-    polite_command
-    | command_sequence optional_comma AND polite_command
-    | command_sequence optional_comma THEN polite_command
-    | command_sequence optional_comma AND optional_comma THEN polite_command
+command:
+    polite_move
+    | polite_turn
+    | polite_move connector simple_turn
+    | polite_turn connector simple_move
     ;
 
-optional_comma:
-    /* vacío */
-    | COMMA
+connector:
+    COMMA AND
+    | COMMA THEN  
+    | AND
+    | THEN
     ;
 
-polite_command:
-    opener action
+polite_move:
+    courtesy_opener MOVE_VERB NUMBER BLOCKS AHEAD
+    {
+        fprintf(output, "MOV,%d\n", $3);
+    }
+    | courtesy_opener MOVE_VERB NUMBER BLOCKS AHEAD ADVERBIAL
+    {
+        fprintf(output, "MOV,%d\n", $3);
+    }
     ;
 
-opener:
-    NOUN courtesy_block
-    | courtesy_block PRONOUN
-    | courtesy_block
-    | NOUN
+polite_turn:
+    courtesy_opener TURN_VERB DEGREE DEGREES
+    {
+        fprintf(output, "TURN,%d\n", $3);
+    }
+    | courtesy_opener TURN_VERB DEGREE DEGREES ADVERBIAL
+    {
+        fprintf(output, "TURN,%d\n", $3);
+    }
     ;
 
-courtesy_block:
-    COURTESY
+simple_move:
+    MOVE_VERB NUMBER BLOCKS AHEAD
+    {
+        fprintf(output, "MOV,%d\n", $2);
+    }
+    | MOVE_VERB NUMBER BLOCKS AHEAD ADVERBIAL
+    {
+        fprintf(output, "MOV,%d\n", $2);
+    }
+    ;
+
+simple_turn:
+    TURN_VERB DEGREE DEGREES
+    {
+        fprintf(output, "TURN,%d\n", $2);
+    }
+    | TURN_VERB DEGREE DEGREES ADVERBIAL
+    {
+        fprintf(output, "TURN,%d\n", $2);
+    }
+    ;
+
+courtesy_opener:
+    NOUN COURTESY
+    | NOUN COURTESY PRONOUN
+    | NOUN COURTESY COURTESY
+    | NOUN COURTESY PRONOUN COURTESY
+    | COURTESY
+    | COURTESY PRONOUN
     | COURTESY COURTESY
-    ;
-
-action:
-    move_command
-    | turn_command
-    ;
-
-move_command:
-    VERB NUMBER UNITS VALID_DIRECTION optional_adverb
-        { fprintf(output, "MOV,%d\n", $2); }
-    ;
-
-turn_command:
-    VERB DEGREE UNITS optional_adverb
-        { fprintf(output, "TURN,%d\n", $2); }
-    ;
-
-optional_adverb:
-    /* vacío */
-    | ADVERBIAL
+    | COURTESY PRONOUN COURTESY
     ;
 
 %%
@@ -91,12 +120,19 @@ int main(void) {
         exit(1);
     }
 
-    printf("Enter a polite instruction to the robot:\n");
+    printf("Robot Language Compiler\n");
+    printf("Enter polite instructions (one per line, Ctrl+D to exit):\n");
+    printf("Examples:\n");
+    printf("  Robot please move 3 blocks ahead\n");
+    printf("  Could you move 2 blocks ahead, then turn 90 degrees\n");
+    printf("---\n");
+    
     yyparse();
     fclose(output);
     return 0;
 }
 
 void yyerror(const char *s) {
-    fprintf(stderr, "❌ Syntax error: %s\n", s);
+    fprintf(stderr, "❌ Error: %s\n", s);
+    fprintf(stderr, "💡 Try: 'Robot please move 3 blocks ahead'\n");
 }

@@ -7,10 +7,12 @@
 
 [Rr]obot|[Aa][Ii]|[Tt]hing                  { return NOUN; }
 [Yy]ou                                      { return PRONOUN; }
-[Cc]ould|[Ww]ould|[Ss]hould|[Pp]lease   { return COURTESY; }
-[Mm]ove|[Tt]urn                             { return VERB; }
-[Bb]locks|[Dd]egrees                        { return UNITS; }
-[Aa]head                                    { return VALID_DIRECTION; }
+[Cc]ould|[Ww]ould|[Ss]hould|[Pp]lease|[Kk]indly   { return COURTESY; }
+[Mm]ove                                     { return MOVE_VERB; }
+[Tt]urn                                     { return TURN_VERB; }
+[Bb]locks                                   { return BLOCKS; }
+[Dd]egrees                                  { return DEGREES; }
+[Aa]head                                    { return AHEAD; }
 [Rr]ight|[Ll]eft|[Bb]ehind                  { return INVALID_DIRECTION; }
 [Aa]nd                                      { return AND; }
 [Tt]hen                                     { return THEN; }
