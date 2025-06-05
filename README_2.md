@@ -103,19 +103,6 @@ El archivo `full_test.py` automatiza todo el pipeline:
 
 ---
 
-## 📦 Estructura del proyecto
-
-```bash
-.
-├── robot.l            # Lex file (tokenización)
-├── robot.y            # Yacc file (gramática)
-├── instructions.asm   # Salida generada
-├── cpu.py             # Simulador de robot
-├── full_test.py       # Script de prueba completa
-```
-
----
-
 ## 📘 Técnicas usadas
 
 * **Análisis léxico y sintáctico**: Lex + Yacc
