@@ -8,6 +8,14 @@ El compilador utiliza técnicas de análisis léxico y sintáctico con **Lex y Y
 
 ---
 
+## Autores:
+
+- Liliana Ramos Vázquez A01644969
+- Diana Fernanda Delgado Salcedo A01644911
+- Luis Fernando Díaz Hernández A01639435
+
+---
+
 ## 🧩 Definición de tokens (Lex Analyzer)
 
 El archivo `robot.l` reconoce y clasifica las palabras clave, estructuras gramaticales y parámetros numéricos. Algunos tokens definidos:
