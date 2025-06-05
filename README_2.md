@@ -2,7 +2,7 @@
 
 ## 📝 Descripción del problema
 
-La programación de sistemas autónomos como robots industriales demanda interfaces intuitivas, incluso en lenguaje natural. Este proyecto se enfoca en construir un compilador que pueda traducir frases en lenguaje educado (como “Could you move 3 blocks ahead?”) a un conjunto de instrucciones ensamblador simples (`MOV,n`, `TURN,d`) que controlan un robot en una cuadrícula 10x10.
+La programación de sistemas autónomos como robots industriales demanda interfaces intuitivas, incluso en lenguaje natural. Este proyecto se enfoca en construir un compilador que pueda traducir frases en lenguaje educado (como “Could you move 3 blocks ahead?”) a un conjunto de instrucciones ensamblador simples (`MOV,b`, `TURN,d`) que controlan un robot en una cuadrícula 10x10.
 
 El compilador utiliza técnicas de análisis léxico y sintáctico con **Lex y Yacc**, además de fundamentos de la **teoría de lenguajes formales** como autómatas finitos y gramáticas libres de contexto.
 
