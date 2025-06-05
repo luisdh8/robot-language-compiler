@@ -210,3 +210,11 @@ Test failed: Illegal move: out of bounds
 - ```cpu.py```	Implementa el simulador y autómatas en Python.
 - ```test_cpu.py```	Script de prueba e impresión del estado del robot.
 - ```instructions.asm```	Archivo de entrada con instrucciones en ensamblador.
+
+---
+## Autores:
+
+- Liliana Ramos Vázquez A01644969
+- Diana Fernanda Delgado Salcedo A01644911
+- Luis Fernando Díaz Hernández A01639435
+
