@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%F0%9F%A7%A0-simulador-del-cpu-del-robot">🧠 Simulador del CPU del Robot</h1>
+<h2 id="%F0%9F%93%8C-descripci%C3%B3n-del-problema">📌 Descripción del problema</h2>
+<p>La Industria 4.0 ha dado paso a una nueva era de manufactura inteligente, donde la automatización, el intercambio de datos y los sistemas ciberfísicos están revolucionando los procesos de producción. En este contexto, los robots juegan un papel fundamental en las fábricas inteligentes, y con ello surge la necesidad de contar con lenguajes de programación especializados para su control.</p>
+<p>Este proyecto tiene como objetivo simular el comportamiento de un robot autónomo sencillo que se desplaza en una cuadrícula bidimensional. La meta es modelar el funcionamiento del CPU del robot utilizando teoría de lenguajes formales (autómatas finitos) y, posteriormente, desarrollar un lenguaje educado específico para su programación.</p>
+<hr>
+<h2 id="autores">Autores:</h2>
+<ul>
+<li>Liliana Ramos Vázquez A01644969</li>
+<li>Diana Fernanda Delgado Salcedo A01644911</li>
+<li>Luis Fernando Díaz Hernández A01639435</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%82-repositorio-de-github-con-el-proyecto">📂 Repositorio de Github con el proyecto</h2>
+<p>https://github.com/luisdh8/robot-language-compiler</p>
+<hr>
+<h2 id="%F0%9F%94%84-diagrama-del-aut%C3%B3mata-que-definir%C3%A1-la-l%C3%B3gica-del-cpu-usando-graphviz">🔄 Diagrama del autómata que definirá la lógica del CPU (usando Graphviz)</h2>
+<p>El simulador no solo valida y ejecuta instrucciones, sino que simula el comportamiento interno del CPU del robot, empleando dos máquinas de estados distintas, cada una con responsabilidades específicas.</p>
+<hr>
+<h3 id="1%EF%B8%8F%E2%83%A3-m%C3%A1quina-de-estados-principal-nfa-de-instrucciones">1️⃣ Máquina de estados principal (NFA de instrucciones)</h3>
+<p>Este autómata finito no determinista (NFA) representa la lógica que valida y ejecuta las instrucciones que recibe el robot. Esta máquina valida secuencias como:</p>
+<ul>
+<li>
+<p>MOV, 2</p>
+</li>
+<li>
+<p>TURN, 90</p>
+</li>
+<li>
+<p>MOV, 1</p>
+</li>
+</ul>
+<h4 id="%F0%9F%93%88-su-estructura-es-la-siguiente">📈 Su estructura es la siguiente:</h4>
+<p><img src="https://github.com/user-attachments/assets/519f26f3-ee3b-4b24-a9e3-f58de1e57fc5" alt="image"></p>
+<pre class="hljs"><code><div>digraph CPU {
+  node [shape=circle]; Q0 Q1 Q2 Q3 Q4;
+  node [shape=doublecircle]; Q5;
+
+  Q0 -&gt; Q1 [label=&quot;MOV&quot;];
+  Q0 -&gt; Q2 [label=&quot;TURN&quot;];
+  Q1 -&gt; Q3 [label=&quot;{b}&quot;];
+  Q2 -&gt; Q4 [label=&quot;{d}&quot;];
+  Q3 -&gt; Q1 [label=&quot;MOV&quot;];
+  Q3 -&gt; Q2 [label=&quot;TURN&quot;];
+  Q4 -&gt; Q2 [label=&quot;TURN&quot;];
+  Q4 -&gt; Q1 [label=&quot;MOV&quot;];
+  Q3 -&gt; Q5 [label=&quot;Epsilon&quot;];
+  Q4 -&gt; Q5 [label=&quot;Epsilon&quot;];
+}
+</div></code></pre>
+<p>Cada instrucción es reconocida por esta máquina como un conjunto de pasos válidos. Acepta múltiples combinaciones de MOV y TURN, y finaliza en un estado de aceptación (Q5) al completar la secuencia.</p>
+<p>📐 Tupla del NFA que modela el CPU:</p>
+<ul>
+<li>
+<p>Q = {Q0, Q1, Q2, Q3, Q4, Q5}</p>
+</li>
+<li>
+<p>Σ = {MOV, TURN, {b}, {d}}</p>
+<ul>
+<li>
+<p>{b} = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9} (número de bloques)</p>
+</li>
+<li>
+<p>{d} = {90, 180, 270, 360} (grados de giro)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>q₀ = Q0</p>
+</li>
+<li>
+<p>F = {Q5}</p>
+</li>
+<li>
+<p>δ = representado por las transiciones en el diagrama</p>
+</li>
+</ul>
+<h3 id="2%EF%B8%8F%E2%83%A3-m%C3%A1quina-de-estados-de-orientaci%C3%B3n-dfa-de-rotaci%C3%B3n">2️⃣ Máquina de estados de orientación (DFA de rotación)</h3>
+<p>Para poder validar que efectivamente el robot no solo se esté moviendo, sino también verificar la orientación a la que se dirigirá después de un TURN, fue necesaria la implementación de una segunda máquina de estados determinista (DFA), que simula los giros en sentido horario y traduce el lenguaje de un 'TURN {d}' en un cambio de estado que representa la nueva dirección que se tomará.</p>
+<p>📈 Su estructura es la siguiente:</p>
+<p><img src="https://github.com/user-attachments/assets/47e17407-ba27-4e53-b695-04ac47975513" alt="image"></p>
+<pre class="hljs"><code><div>digraph Orientation {
+  rankdir=LR;
+  node [shape=circle];
+
+  DN -&gt; DE [label=&quot;TURN,90&quot;];
+  DN -&gt; DS [label=&quot;TURN,180&quot;];
+  DN -&gt; DW [label=&quot;TURN,270&quot;];
+  DN -&gt; DN [label=&quot;TURN,360&quot;];
+
+  DE -&gt; DS [label=&quot;TURN,90&quot;];
+  DE -&gt; DW [label=&quot;TURN,180&quot;];
+  DE -&gt; DN [label=&quot;TURN,270&quot;];
+  DE -&gt; DE [label=&quot;TURN,360&quot;];
+
+  DS -&gt; DW [label=&quot;TURN,90&quot;];
+  DS -&gt; DN [label=&quot;TURN,180&quot;];
+  DS -&gt; DE [label=&quot;TURN,270&quot;];
+  DS -&gt; DS [label=&quot;TURN,360&quot;];
+
+  DW -&gt; DN [label=&quot;TURN,90&quot;];
+  DW -&gt; DE [label=&quot;TURN,180&quot;];
+  DW -&gt; DS [label=&quot;TURN,270&quot;];
+  DW -&gt; DW [label=&quot;TURN,360&quot;];
+
+  DN [shape=doublecircle];
+  DE [shape=doublecircle];
+  DS [shape=doublecircle];
+  DW [shape=doublecircle];
+}
+</div></code></pre>
+<p>🧭 Estados:</p>
+<ul>
+<li>
+<p>DN = Norte</p>
+</li>
+<li>
+<p>DE = Este</p>
+</li>
+<li>
+<p>DS = Sur</p>
+</li>
+<li>
+<p>DW = Oeste</p>
+</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%A7%AA-l%C3%B3gica-de-simulaci%C3%B3n">🧪 Lógica de simulación</h2>
+<ul>
+<li>El robot inicia en la posición <code>(5, 5)</code> mirando al norte.</li>
+<li>Las instrucciones válidas se leen desde un archivo <code>.asm</code> (una por línea).</li>
+<li>El simulador avanza instrucción por instrucción:
+<ul>
+<li>Si es <code>MOV,b</code> verifica que no salga de la matriz.</li>
+<li>Si es <code>TURN,d</code>, actualiza la orientación.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-instrucciones-de-instalaci%C3%B3n">🛠️ Instrucciones de Instalación</h2>
+<ol>
+<li><strong>Clonar el repositorio</strong></li>
+</ol>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/luisdh8/robot-language-compiler.git
+<span class="hljs-built_in">cd</span> robot-language-compiler
+</div></code></pre>
+<ol start="2">
+<li><strong>Ejecutar el programa</strong></li>
+</ol>
+<pre class="hljs"><code><div>python test_cpu.py
+</div></code></pre>
+<hr>
+<h2 id="%E2%9C%85-output-esperado">✅ Output esperado</h2>
+<pre class="hljs"><code><div>Initial state:
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . N . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+Robot at (5,5) facing N
+-------------------
+Instruction: mov,2
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . N . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+Robot at (5,3) facing N
+-------------------
+Instruction: turn,90
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . E . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+Robot at (5,3) facing E
+-------------------
+Instruction: mov,4
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . E
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+Robot at (9,3) facing E
+-------------------
+Instruction: mov,2
+Test failed: Illegal move: out of bounds
+</div></code></pre>
+<h2 id="%F0%9F%93%82-archivos-relevantes">📂 Archivos relevantes</h2>
+<ul>
+<li><code>cpu.py</code>	Implementa el simulador y autómatas en Python.</li>
+<li><code>test_cpu.py</code>	Script de prueba e impresión del estado del robot.</li>
+<li><code>instructions.asm</code>	Archivo de entrada con instrucciones en ensamblador.</li>
+</ul>
+
+</body>
+</html>

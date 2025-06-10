@@ -7,6 +7,14 @@ La Industria 4.0 ha dado paso a una nueva era de manufactura inteligente, donde 
 Este proyecto tiene como objetivo simular el comportamiento de un robot autónomo sencillo que se desplaza en una cuadrícula bidimensional. La meta es modelar el funcionamiento del CPU del robot utilizando teoría de lenguajes formales (autómatas finitos) y, posteriormente, desarrollar un lenguaje educado específico para su programación.
 
 ---
+## Autores:
+
+- Liliana Ramos Vázquez A01644969
+- Diana Fernanda Delgado Salcedo A01644911
+- Luis Fernando Díaz Hernández A01639435
+
+
+---
 
 ## 📂 Repositorio de Github con el proyecto
 
@@ -210,11 +218,3 @@ Test failed: Illegal move: out of bounds
 - ```cpu.py```	Implementa el simulador y autómatas en Python.
 - ```test_cpu.py```	Script de prueba e impresión del estado del robot.
 - ```instructions.asm```	Archivo de entrada con instrucciones en ensamblador.
-
----
-## Autores:
-
-- Liliana Ramos Vázquez A01644969
-- Diana Fernanda Delgado Salcedo A01644911
-- Luis Fernando Díaz Hernández A01639435
-
