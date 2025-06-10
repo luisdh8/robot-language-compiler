@@ -34,7 +34,7 @@ class RobotLexer:
             ('COMMA', r','),
             ('ADVERBIAL', r'\b(right now|now|quickly|immediately)\b'),
             ('DEGREE', r'\b(90|180|270|360)\b'),
-            ('NUMBER', r'\b\d+\b'),
+            ('NUMBER', r'\b[0-9]+\b'),
             ('WS', r'[ \t]+'),
             ('EOL', r'\n'),
         ]
@@ -93,29 +93,19 @@ class RobotParser:
     def _parse_instruction(self):
         """Parse una instrucción completa"""
         instructions = []
-        
         # Skip courtesy words
         while self._current_token()[0] in ['NOUN', 'PRONOUN', 'COURTESY']:
             self.pos += 1
-        
-        # Parse primera acción
-        first_action = self._parse_action()
-        if first_action:
-            instructions.append(first_action)
-        
-        # Check for compound command
-        if self._current_token()[0] in ['COMMA', 'AND', 'THEN']:
-            # Skip connector
-            if self._current_token()[0] == 'COMMA':
-                self.pos += 1
-            if self._current_token()[0] in ['AND', 'THEN']:
-                self.pos += 1
-            
-            # Parse segunda acción
-            second_action = self._parse_action()
-            if second_action:
-                instructions.append(second_action)
-        
+        # Parse first action
+        action = self._parse_action()
+        if action:
+            instructions.append(action)
+        # Parse additional actions separated by connectors
+        while self._current_token()[0] in ['COMMA', 'AND', 'THEN']:
+            self.pos += 1  # Skip connector
+            next_action = self._parse_action()
+            if next_action:
+                instructions.append(next_action)
         return instructions
     
     def _parse_action(self):
@@ -136,7 +126,9 @@ class RobotParser:
         number_token = self._consume_token('NUMBER')
         if not number_token:
             raise Exception("Expected NUMBER after MOVE_VERB")
-        
+        value = int(number_token[1])
+        if not (1 <= value <= 9):
+            raise Exception(f"Block count {value} out of range (1-9)")
         self._consume_token('BLOCKS')  # Optional
         self._consume_token('AHEAD')   # Optional
         
