@@ -100,12 +100,18 @@ class RobotParser:
         action = self._parse_action()
         if action:
             instructions.append(action)
-        # Parse additional actions separated by connectors
-        while self._current_token()[0] in ['COMMA', 'AND', 'THEN']:
-            self.pos += 1  # Skip connector
-            next_action = self._parse_action()
-            if next_action:
-                instructions.append(next_action)
+        # Parse additional actions separated by any number of connectors
+        while True:
+            # Skip any sequence of connectors (COMMA, AND, THEN)
+            while self._current_token()[0] in ['COMMA', 'AND', 'THEN']:
+                self.pos += 1
+            # If next token is an action, parse it
+            if self._current_token()[0] in ['MOVE_VERB', 'TURN_VERB']:
+                next_action = self._parse_action()
+                if next_action:
+                    instructions.append(next_action)
+            else:
+                break
         return instructions
     
     def _parse_action(self):
