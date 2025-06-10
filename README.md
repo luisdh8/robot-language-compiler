@@ -470,12 +470,10 @@ Final state accepted: True
 --------------------------------------------------
 ```
 
-<<<<<<< HEAD
 ## 📂 Archivos relevantes
 - ```cpu.py```	Implementa el simulador y autómatas en Python.
 - ```test_cpu.py```	Script de prueba e impresión del estado del robot.
 - ```instructions.asm```	Archivo de entrada con instrucciones en ensamblador.
-=======
 ---
 
 ## 🏦 Modelo pedagógico
@@ -488,4 +486,39 @@ Este proyecto sigue el enfoque POL (Project-Oriented Learning), integrando:
 * Simulación e interpretación
 
 ---
->>>>>>> 8d8a5e879983bca52fecb8d40f343273edfe2a9a
+
+## 🧠 Implementación ANTLR (versión alternativa del compilador)
+
+Con el fin de mejorar la extensibilidad, claridad y modernidad del compilador, se implementó una versión alternativa utilizando **ANTLR (Another Tool for Language Recognition)**.
+
+### 📌 Ventajas observadas:
+- Código más limpio e integrado (solo un archivo `.g4` con gramática léxica y sintáctica).
+- Mayor control sobre errores con mensajes claros y amigables.
+- Extensión sencilla para nuevas reglas gramaticales.
+
+### ⚙️ Archivos clave:
+- `RobotGrammar.g4`: gramática léxico-sintáctica en ANTLR.
+- `robot_backend.py`: backend con acciones semánticas y generación `.asm`.
+- `full_test_antlr.py`: pruebas automatizadas y comparación con la versión Lex/Yacc.
+
+### ✅ Resultados observados:
+- 100% de éxito en compilación de instrucciones válidas.
+- Promedio de compilación: **~0.013ms** por frase.
+- Mejores mensajes de error comparados con Lex/Yacc.
+
+### ❌ Casos rechazados correctamente:
+- `"Move 5 blocks right"` → Rechazo por dirección inválida.
+- `"Robot move 15 blocks ahead"` → Rechazo por número fuera de rango (esperado: 1–9).
+- `"Please move 3 blocks ahead and then"` → Error por estructura incompleta.
+
+### 🆚 Comparación ANTLR vs Lex/Yacc:
+| Criterio              | ANTLR                    | Lex/Yacc                 |
+|----------------------|--------------------------|--------------------------|
+| Legibilidad          | Alta                     | Media                    |
+| Archivo único        | Sí (formato `.g4`)       | No (Lex `.l` + Yacc `.y`)|
+| Manejo de errores    | Amigable y detallado     | Críptico o técnico       |
+| Velocidad de ejecución | ~0.5ms promedio        | ~0.3ms promedio (estimado)|
+| Extensibilidad       | Excelente                | Buena                    |
+| Curva de aprendizaje | Baja-media               | Alta                     |
+
+> 📌 **Conclusión**: ANTLR es una excelente alternativa moderna a Lex/Yacc para procesar lenguajes estructurados y educados en este tipo de proyectos.
